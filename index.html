@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting…</title>
+  <script>
+// As soon as the page loads, redirect to flipdot.local, preserving
+// the full path, query-string, and hash from Spotify
+(function(){
+  // build the full target URL
+  const hostname = 'flipdot.local';      // or your device’s LAN name
+  const port     = '';                   // e.g. ':80' if needed
+  const path     = window.location.pathname || '/callback';
+  const query    = window.location.search || '';
+  const hash     = window.location.hash || '';
+
+  const targetUrl = `http://${hostname}${port}${path}${query}${hash}`;
+
+  // do the redirect
+  window.location.replace(targetUrl);
+})();
+  </script>
+</head>
+<body>
+  <p>Redirecting you to your Flip‑Dot display…</p>
+  <p>If nothing happens in a moment, <a id="fallback" href="#">click here</a>.</p>
+  <script>
+// also wire up the fallback link
+document.getElementById('fallback').href =
+  `http://flipdot.local${window.location.pathname}${window.location.search}${window.location.hash}`;
+  </script>
+</body>
+</html>
