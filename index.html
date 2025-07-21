@@ -7,14 +7,10 @@
 // As soon as the page loads, redirect to flipdot.local, preserving
 // the full path, query-string, and hash from Spotify
 (function(){
-  // build the full target URL
-  const hostname = 'flipdot.local';      // or your device’s LAN name
-  const port     = '';                   // e.g. ':80' if needed
-  const path     = '/spotify_cb';
-  const query    = window.location.search || '';
-  const hash     = window.location.hash || '';
 
-  const targetUrl = `http://${hostname}${port}${path}${query}${hash}`;
+  const query    = window.location.search || '';
+
+  const targetUrl = `http://flipdot.local/spotify_cb${query}`;
 
   // do the redirect
   window.location.replace(targetUrl);
@@ -27,7 +23,7 @@
   <script>
 // also wire up the fallback link
 document.getElementById('fallback').href =
-  `http://flipdot.local${window.location.pathname}${window.location.search}${window.location.hash}`;
+  `http://flipdot.local/spotify_cb${query}`;
   </script>
 </body>
 </html>
